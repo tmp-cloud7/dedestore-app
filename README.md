@@ -1,66 +1,234 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+🛍️ dedestore-app E-Commerce Backend — Laravel CRUD API (Bootcamp Project)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A backend API for an E-Commerce Web Application, built using Laravel during Bootcamp to practice modern backend development concepts — including RESTful API design, database relationships, and CRUD operations.
 
-## About Laravel
+This project manages products, vendors, and user authentication, providing a secure and scalable API for a frontend store or admin dashboard.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+🧠 Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This backend forms the core logic of a full e-commerce platform — handling product management, user accounts, and pricing data.
+It demonstrates how Laravel’s Eloquent ORM simplifies database operations and how to design clean APIs for frontend integration (such as React or Vue apps).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The goal of the Bootcamp project was to understand how to structure a backend system that connects smoothly with a frontend interface, using industry best practices for maintainability, scalability, and security.
 
-## Learning Laravel
+⚙️ Core Features
+🧾 Product Management
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Add, view, update, and delete products (CRUD operations).
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Manage product details like name, description, price, quantity, and category.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Support for product image uploads via API.
 
-## Laravel Sponsors
+🧑‍💼 Vendor Association
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Each product can be linked to a specific vendor (vendor_id field).
 
-### Premium Partners
+Vendors can manage their own product listings.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+💰 Pricing System
 
-## Contributing
+Handles initial and selling prices separately.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Provides flexibility for discounts and markup tracking.
 
-## Code of Conduct
+🗂️ Category-Based Organization
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Products can be grouped and filtered by category for better management.
 
-## Security Vulnerabilities
+🔐 Authentication & Security (Optional Extension)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Supports Laravel’s built-in authentication scaffolding for user/vendor login.
 
-## License
+Token-based authentication can be added using Laravel Sanctum for frontend communication.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+🧩 Tech Stack
+
+Layer	Technology,
+Framework	Laravel 11,
+Language	PHP,
+Database	MySQL,
+ORM	Eloquent ORM,
+Web Server	Artisan / Apache / Nginx,
+Package Manager	Composer,
+Environment Management	.env,
+Optional Frontend Integration	React,
+
+
+📦 Model Structure
+
+app/Models/Product.php
+
+class Product extends Model
+
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'product_name', 
+        'product_desc', 
+        'initial_price', 
+        'selling_price', 
+        'quantity', 
+        'category',
+        'product_image',
+        'vendor_id',
+    ];
+}
+
+
+This model defines the structure for the products table and the fields that can be mass-assigned through the API or dashboard forms.
+
+📁 Project Structure
+dedestore/
+
+│
+
+├── app/
+
+│   ├── Http/
+
+│   │   ├── Controllers/     # Contains API and logic controllers
+
+│   ├── Models/              # Product and User models
+
+│
+
+├── bootstrap/               # Framework bootstrap files
+
+├── config/                  # Laravel configuration files
+
+├── database/                # Migrations and seeders
+
+├── public/                  # Public assets and entry point
+
+├── resources/               # Views, if needed
+
+├── routes/
+
+│   ├── api.php              # API routes (CRUD endpoints)
+
+│   ├── web.php              # Optional web routes
+
+│
+
+├── storage/                 # Logs and file uploads
+
+├── tests/                   # Test scripts
+
+│
+
+├── .env.example             # Example environment variables
+
+├── composer.json            # PHP dependencies
+
+├── artisan                  # Artisan CLI tool
+
+├── README.md
+
+🚀 Getting Started
+🧰 Requirements
+
+PHP 8.2+
+
+Composer
+
+MySQL
+
+Laravel CLI
+
+Optional: XAMPP / Valet / Docker
+
+⚙️ Setup Steps
+
+Clone the Repository
+
+git clone https://github.com/tmp-cloud7/dedestore-app.git
+
+cd dedestore-app
+
+
+Install Dependencies
+
+composer install
+
+
+Create Environment File
+
+cp .env.example .env
+
+
+Generate Application Key
+
+php artisan key:generate
+
+
+Set Up Database
+
+Create a new MySQL database.
+
+Update .env with your credentials:
+
+DB_DATABASE=ecommerce_db
+
+DB_USERNAME=root
+
+DB_PASSWORD=
+
+
+Run Migrations
+
+php artisan migrate
+
+
+Serve the Application
+
+php artisan serve
+
+
+Visit the API at:
+👉 http://localhost:8000/api/products
+
+🧠 Bootcamp Learning Outcomes
+
+During this Bootcamp project, you learned:
+
+Setting up and structuring a Laravel project from scratch.
+
+Creating and managing database migrations.
+
+Defining Eloquent models and relationships.
+
+Building RESTful APIs for frontend consumption.
+
+Handling validation and image uploads.
+
+Managing environment variables and configuration securely.
+
+🧩 Example API Endpoints
+Method	Endpoint	Description
+
+GET	/api/products	Fetch all products
+
+POST	/api/products	Create new product
+
+GET	/api/products/{id}	View single product
+
+PUT	/api/products/{id}	Update product
+
+DELETE	/api/products/{id}	Delete product
+
+🧰 Tools Used
+
+Postman – API testing
+
+GitHub – Version control
+
+MySQL / phpMyAdmin – Database management
+
+VS Code – Development environment
+
+🏁 Conclusion
+
+This Laravel-based backend project provided hands-on experience with building and deploying a functional REST API — simulating a real-world e-commerce backend.
+It emphasizes clean architecture, scalability, and secure data handling, preparing developers for professional full-stack projects.
